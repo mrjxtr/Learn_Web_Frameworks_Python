@@ -1,0 +1,20 @@
+body {
+  font-family: "JetBrains Mono", monospace;
+  margin: 0;
+  padding: 20px;
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+h1 {
+  color: #9c27b0;
+}
+
+a {
+  color: #bb86fc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
