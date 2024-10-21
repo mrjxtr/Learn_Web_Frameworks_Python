@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block body %}
+<h1>Hello World</h1>
+<h2>Hello {{ my_name }}</h2>
+<p>user: {{ my_username }}</p>
+<lu>
+  {% for item in my_list %}
+  <li {% if item>= 10 %}style="color: red"{% endif %}> {{ item }}</li>
+  {% endfor %}
+</lu>
+<p>{{ my_list }}</p>
+{% endblock %}
