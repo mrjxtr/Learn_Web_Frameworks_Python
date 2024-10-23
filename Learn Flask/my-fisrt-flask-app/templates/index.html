@@ -2,14 +2,18 @@
 
 {% block title %}Home Page{% endblock %}
 
-{% block body %}
-<h1>Hello World</h1>
+{% block content %}
+<h1>WELCOME!</h1>
 <h2>Hello {{ my_name }}</h2>
-<p>user: {{ my_username }}</p>
+<p>user: {{ my_username }}</p><br>
 <lu>
   {% for item in my_list %}
   <li {% if item>= 10 %}style="color: red"{% endif %}> {{ item }}</li>
   {% endfor %}
 </lu>
 <p>{{ my_list }}</p>
+<h3> What would you like to do?</h3><br>
+<a href="{{ url_for('other') }}">other</a><br>
+<a href="{{ url_for('convert_csv') }}">Convert a file to CSV</a><br>
+<a href="{{ url_for('excel_to_csv') }}">Convert Excel to CSV</a>
 {% endblock %}
