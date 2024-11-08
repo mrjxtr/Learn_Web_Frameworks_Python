@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}API Demo{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>API Integration Demo</h1>
+    <p>This demo shows how to use the JavaScript fetch API with Flask.</p>
+    
+    <form id="apiForm" class="api-form">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" value="Jester" required>
+            <span class="validation-message"></span>
+        </div>
+        
+        <div class="form-group">
+            <label for="greeting">Greeting:</label>
+            <input type="text" id="greeting" value="Hello" required>
+            <span class="validation-message"></span>
+        </div>
+        
+        <button type="submit" id="submitBtn">Send Request</button>
+    </form>
+    
+    <div id="response" class="response-area"></div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('apiForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const responseArea = document.getElementById('response');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        LoadingManager.showLoading(submitBtn);
+        responseArea.innerHTML = '<p class="loading">Sending request...</p>';
+
+        const jsonData = {
+            name: document.getElementById('name').value,
+            greeting: document.getElementById('greeting').value
+        };
+
+        console.log('Sending request with data:', jsonData);
+
+        try {
+            const response = await fetch('{{ url_for("js_request") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            });
+
+            const data = await response.json();
+            console.log('Received response:', data);
+            
+            responseArea.innerHTML = `
+                <div class="response-success">
+                    <h3>Success! 🎉</h3>
+                    <p>${data.message}</p>
+                </div>
+            `;
+        } catch (error) {
+            console.error('Error:', error);
+            responseArea.innerHTML = `
+                <div class="response-error">
+                    <h3>Error ❌</h3>
+                    <p>${error.message}</p>
+                </div>
+            `;
+        } finally {
+            LoadingManager.hideLoading(submitBtn);
+        }
+    });
+});
+</script>
+{% endblock %}

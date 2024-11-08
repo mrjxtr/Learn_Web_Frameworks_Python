@@ -10,7 +10,29 @@
 </head>
 
 <body>
-  {% block content %}default content{% endblock %}
+  <nav class="navbar">
+    <div class="nav-brand">Flask Demo</div>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('index') }}">Home</a></li>
+      <li><a href="{{ url_for('filters') }}">Filters</a></li>
+      <li><a href="{{ url_for('convert_csv') }}">Convert CSV</a></li>
+      <li><a href="{{ url_for('excel_to_csv') }}">Excel to CSV</a></li>
+      <li><a href="{{ url_for('js_request') }}">API Demo</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    {% block content %}default content{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <p>Created by {{ my_username if my_username else 'mrjxtr' }} | Learning Flask</p>
+  </footer>
+
+  <div id="theme-toggle" class="theme-toggle">🌙</div>
+  
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block scripts %}{% endblock %}
 </body>
 
 </html>

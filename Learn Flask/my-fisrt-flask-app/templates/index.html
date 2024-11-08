@@ -3,17 +3,33 @@
 {% block title %}Home Page{% endblock %}
 
 {% block content %}
-<h1>WELCOME!</h1>
-<h2>Hello {{ my_name }}</h2>
-<p>user: {{ my_username }}</p><br>
-<lu>
-  {% for item in my_list %}
-  <li {% if item>= 10 %}style="color: red"{% endif %}> {{ item }}</li>
-  {% endfor %}
-</lu>
-<p>{{ my_list }}</p>
-<h3> What would you like to do?</h3><br>
-<a href="{{ url_for('other') }}">other</a><br>
-<a href="{{ url_for('convert_csv') }}">Convert a file to CSV</a><br>
-<a href="{{ url_for('excel_to_csv') }}">Convert Excel to CSV</a>
+<div class="card">
+    <h1>Welcome to Flask Demo</h1>
+    <h2>{{ my_name }}</h2>
+    <p class="username">@{{ my_username }}</p>
+    <p>This is a demonstration of various Flask features and capabilities.</p>
+</div>
+
+<div class="card">
+    <h2>Available Features</h2>
+    <div class="feature-grid">
+        <div class="feature-item">
+            <h3>String Filters</h3>
+            <p>Demonstrate various string manipulation techniques</p>
+            <a href="{{ url_for('filters') }}" class="button">Try Filters</a>
+        </div>
+        
+        <div class="feature-item">
+            <h3>File Conversion</h3>
+            <p>Convert Excel files to CSV format</p>
+            <a href="{{ url_for('excel_to_csv') }}" class="button">Convert Files</a>
+        </div>
+        
+        <div class="feature-item">
+            <h3>API Integration</h3>
+            <p>Example of JavaScript fetch API usage</p>
+            <a href="{{ url_for('js_request') }}" class="button">Try API</a>
+        </div>
+    </div>
+</div>
 {% endblock %}

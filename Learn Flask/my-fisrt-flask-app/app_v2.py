@@ -10,6 +10,7 @@ from flask import (
     url_for,
     Response,
     send_from_directory,
+    jsonify
 )
 
 app = Flask(__name__, template_folder="templates")
@@ -115,6 +116,18 @@ def filters():
     example_text = "Hello World"
     return render_template("filters.html", example_text=example_text)
 
+
+@app.route("/js_request", methods=['GET','POST'])
+def js_request():
+    if request.method == "GET":
+        return render_template("js_request.html")
+    elif request.method == "POST":
+        greeting = request.json['greeting']
+        name = request.json['name']
+        with open('file.txt', 'w') as f:
+            f.write(f'{greeting}, {name}')
+        
+        return jsonify({'message': 'Successfully written!'})
 
 @app.template_filter("reverse_string")
 def reverse_string(s):
