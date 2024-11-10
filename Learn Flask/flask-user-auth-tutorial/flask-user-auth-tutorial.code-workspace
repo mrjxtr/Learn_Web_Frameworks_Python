@@ -1,0 +1,18 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "sqltools.connections": [
+      {
+        "previewLimit": 50,
+        "driver": "SQLite",
+        "database": "${workspaceFolder:flask-user-auth-tutorial}/instance/testdb.db",
+        "name": "user"
+      }
+    ],
+    "cSpell.words": ["testdb"]
+  }
+}
