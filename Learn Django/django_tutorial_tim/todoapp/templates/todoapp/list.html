@@ -1,0 +1,16 @@
+{% extends "todoapp/base.html" %}
+
+{% block title %} Todo List {% endblock %} 
+
+{% block content %}
+    <h1>{{ ls.name }}</h1>
+    <ul>
+        {% for item in ls.item_set.all %}
+            {% if item.completed == True %}
+                <li>{{ item.text }} - COMPLETED</li>
+            {% else %}
+                <li>{{ item.text }} - NOT COMPLETED</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}
