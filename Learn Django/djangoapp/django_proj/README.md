@@ -1,4 +1,4 @@
-# Django
+# Learning Django from Tech with Tim's [Learn Django in 20 Minutes!!](https://youtu.be/nGIg40xs9e4?si=6_tqKIMBcnC_QWev) video
 
 ## Important Commands to remember
 
