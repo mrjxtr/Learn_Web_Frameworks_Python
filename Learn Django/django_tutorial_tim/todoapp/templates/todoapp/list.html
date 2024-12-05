@@ -4,13 +4,19 @@
 
 {% block content %}
     <h1>{{ ls.name }}</h1>
-    <ul>
-        {% for item in ls.item_set.all %}
-            {% if item.completed == True %}
-                <li>{{ item.text }} - COMPLETED</li>
-            {% else %}
-                <li>{{ item.text }} - NOT COMPLETED</li>
-            {% endif %}
-        {% endfor %}
-    </ul>
+    <form method="POST" action="#">
+        {% csrf_token %}
+        <ul>
+            {% for item in ls.item_set.all %}
+                {% if item.completed == True %}
+                    <li><input type="checkbox" value="checked", name="c{{ item.id }}" checked>{{ item.text }}</li>
+                {% else %}
+                    <li><input type="checkbox" value="checked", name="c{{ item.id }}">{{ item.text }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <button type="submit", name="save", value="save">Save</button><br>
+        <input type="text" name="item"><br>
+        <button type="submit", name="addItem", value="addItem">Add Item</button>
+    </form>
 {% endblock %}

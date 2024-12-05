@@ -1,0 +1,11 @@
+{% extends "todoapp/base.html" %}
+
+{% block title %} Create List {% endblock %}
+{% block content %}
+<h1>Create List Page</h1> 
+<form method="POST" action="/create/">
+    {% csrf_token %}
+    {{form.name}}
+    <button type="submit", name="create">Create New</button>
+</form>
+{% endblock %}
